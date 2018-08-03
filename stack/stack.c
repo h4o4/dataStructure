@@ -48,9 +48,9 @@ int main(void) {
     Stack a = newStack();
     push(&a, "12");
     push(&a, "232123213");
-    char *ptr = a.head;
-    printf("%p\n", pop(&a));
-    printf("%p\n", pop(&a));
+    // char *ptr = a.head;
+    printf("%s\n", pop(&a));
+    printf("%s\n", pop(&a));
 
     return 0;
 }
