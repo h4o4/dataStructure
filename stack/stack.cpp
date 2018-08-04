@@ -1,31 +1,32 @@
 #include <iostream>
 using namespace std;
 
+template <class T>
 class Stack {
     private:
-        char node;
+        T node;
         Stack *next_node;
     public:
         Stack();
-        ~Stack();
+        ~Stack() {};
         int size();
-        void push(char &item);
-        char top();
+        void push(T item);
+        T top();
         void pop();
 };
 
-Stack::Stack() {
-    node = '\0';
+template <class T>
+Stack<T>::Stack() {
+    node = 0;
     next_node = nullptr;
 }
 
-Stack::~Stack() {}
-
-int Stack::size() {
+template <class T>
+int Stack<T>::size() {
     if (next_node != nullptr) {
         return next_node->size() + 1;
     } else {
-        if (node == '\0') {
+        if (node == 0) {
             return 0;
         } else {
             return 1;
@@ -33,11 +34,12 @@ int Stack::size() {
     }
 }
 
-void Stack::push(char &item) {
+template <class T>
+void Stack<T>::push(T item) {
     if (next_node != nullptr) {
         next_node->push(item);
     } else {
-        if (node == '\0') {
+        if (node == 0) {
             node = item;
         } else {
             Stack *temp = new Stack;
@@ -48,7 +50,8 @@ void Stack::push(char &item) {
     }
 }
 
-char Stack::top() {
+template <class T>
+T Stack<T>::top() {
     if (next_node != nullptr) {
         return next_node->top();
     } else {
@@ -56,12 +59,14 @@ char Stack::top() {
     }
 }
 
-void Stack::pop() {
+template <class T>
+void Stack<T>::pop() {
     if (next_node == nullptr) {
-        node = '\0';
+        node = 0;
         return;
     }
     if (next_node->next_node == nullptr) {
+        delete next_node;
         next_node = nullptr;
     } else {
         next_node->pop();
