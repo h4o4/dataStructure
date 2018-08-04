@@ -72,8 +72,7 @@ void Queue<T>::pop() {
         node = 0;
     } else {
         node = next_node->node;
-        Queue *temp = next_node->next_node;
-        delete next_node;
-        next_node = temp;
+        // delete next_node;
+        next_node = next_node->next_node;
     }
 }
