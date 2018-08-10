@@ -17,7 +17,6 @@ class Stack {
 
 template <class T>
 Stack<T>::Stack() {
-    node = 0;
     next_node = nullptr;
 }
 
@@ -26,11 +25,7 @@ int Stack<T>::size() {
     if (next_node != nullptr) {
         return next_node->size() + 1;
     } else {
-        if (node == 0) {
-            return 0;
-        } else {
-            return 1;
-        }
+        return 0;
     }
 }
 
@@ -39,14 +34,9 @@ void Stack<T>::push(T item) {
     if (next_node != nullptr) {
         next_node->push(item);
     } else {
-        if (node == 0) {
-            node = item;
-        } else {
-            Stack *temp = new Stack;
-            temp->node = item;
-            temp->next_node = nullptr;
-            next_node = temp;
-        }
+        Stack *temp = new Stack;
+        temp->node = item;
+        next_node = temp;
     }
 }
 
@@ -62,11 +52,9 @@ T Stack<T>::top() {
 template <class T>
 void Stack<T>::pop() {
     if (next_node == nullptr) {
-        node = 0;
         return;
     }
     if (next_node->next_node == nullptr) {
-        delete next_node;
         next_node = nullptr;
     } else {
         next_node->pop();

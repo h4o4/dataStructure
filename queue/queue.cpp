@@ -19,7 +19,6 @@ class Queue {
 
 template <class T>
 Queue<T>::Queue() {
-    node = 0;
     next_node = nullptr;
 }
 
@@ -28,11 +27,7 @@ int Queue<T>::size() {
     if (next_node != nullptr) {
         return next_node->size() + 1;
     } else {
-        if (node == 0) {
-            return 0;
-        } else {
-            return 1;
-        }
+        return 0;
     }
 }
 
@@ -41,20 +36,19 @@ void Queue<T>::push(T item) {
     if (next_node != nullptr) {
         next_node->push(item);
     } else {
-        if (node == 0) {
-            node = item;
-        } else {
-            Queue *temp = new Queue;
-            temp->node = item;
-            temp->next_node = nullptr;
-            next_node = temp;
-        }
+        Queue *temp = new Queue;
+        temp->node = item;
+        next_node = temp;
     }
 }
 
 template <class T>
 T Queue<T>::front() {
-    return node;
+    if (next_node != nullptr) {
+        return next_node->node; 
+    } else {
+        return node;
+    }
 }
 
 template <class T>
@@ -72,7 +66,6 @@ void Queue<T>::pop() {
         node = 0;
     } else {
         node = next_node->node;
-        // delete next_node;
         next_node = next_node->next_node;
     }
 }
