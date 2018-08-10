@@ -34,9 +34,8 @@ void Stack<T>::push(T item) {
     if (next_node != nullptr) {
         next_node->push(item);
     } else {
-        Stack *temp = new Stack;
-        temp->node = item;
-        next_node = temp;
+        next_node = new Stack<T>;
+        next_node->node = item;
     }
 }
 
@@ -55,6 +54,7 @@ void Stack<T>::pop() {
         return;
     }
     if (next_node->next_node == nullptr) {
+        delete next_node;
         next_node = nullptr;
     } else {
         next_node->pop();

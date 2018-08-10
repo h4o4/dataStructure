@@ -1,5 +1,4 @@
 #include <iostream>
-#include <queue>
 using namespace std;
 
 template <class T>
@@ -36,9 +35,8 @@ void Queue<T>::push(T item) {
     if (next_node != nullptr) {
         next_node->push(item);
     } else {
-        Queue *temp = new Queue;
-        temp->node = item;
-        next_node = temp;
+        next_node = new Queue;
+        next_node->node = item;
     }
 }
 
@@ -63,9 +61,15 @@ T Queue<T>::back() {
 template <class T>
 void Queue<T>::pop() {
     if (next_node == nullptr) {
-        node = 0;
+        return;
     } else {
-        node = next_node->node;
-        next_node = next_node->next_node;
+        Queue *temp = next_node;
+        if (next_node->next_node != nullptr) {
+            delete next_node;
+            next_node = temp->next_node;
+        } else {
+            delete next_node;
+            next_node = nullptr;
+        }
     }
 }
