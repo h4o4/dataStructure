@@ -1,6 +1,3 @@
-#include <iostream>
-using namespace std;
-
 template <class T>
 class Stack {
     private:
@@ -10,7 +7,7 @@ class Stack {
         Stack();
         ~Stack() {};
         int size();
-        void push(T item);
+        void push(T &item);
         T top();
         void pop();
 };
@@ -30,7 +27,7 @@ int Stack<T>::size() {
 }
 
 template <class T>
-void Stack<T>::push(T item) {
+void Stack<T>::push(T &item) {
     if (next_node != nullptr) {
         next_node->push(item);
     } else {

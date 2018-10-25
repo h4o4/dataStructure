@@ -1,6 +1,3 @@
-#include <iostream>
-using namespace std;
-
 template <class T>
 class Queue {
     private:
@@ -10,7 +7,7 @@ class Queue {
         Queue();
         ~Queue() {};
         int size();
-        void push(T item);
+        void push(T &item);
         T front();
         T back();
         void pop();
@@ -31,7 +28,7 @@ int Queue<T>::size() {
 }
 
 template <class T>
-void Queue<T>::push(T item) {
+void Queue<T>::push(T &item) {
     if (next_node != nullptr) {
         next_node->push(item);
     } else {
